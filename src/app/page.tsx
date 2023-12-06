@@ -1,66 +1,76 @@
-import Link from "next/link";
+"use client"
 
-import { CreatePost } from "lotti/app/_components/create-post";
-import { api } from "lotti/trpc/server";
 
-export default async function Home() {
-  const hello = await api.post.hello.query({ text: "from tRPC" });
+import {Page} from "lotti/components/Page";
+import {useState} from "react";
+import {api} from "lotti/trpc/react";
+import {z} from "zod";
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Hello
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
-        <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
-            {hello ? hello.greeting : "Loading tRPC query..."}
-          </p>
-        </div>
+export default function Home() {
+  const [email, setEmail] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+  const {mutate: subscribeNews} = api.news.subscribeNews.useMutation();
 
-        <CrudShowcase />
-      </div>
-    </main>
-  );
-}
+  const emailSchema = z.string().email();
 
-async function CrudShowcase() {
-  const latestPost = await api.post.getLatest.query();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      emailSchema.parse(email);
+      subscribeNews({ email });
+      setError(null);
+    } catch (validationError) {
+      if (validationError instanceof z.ZodError) {
+        setError(validationError.errors[0]?.message ?? null);
+      }
+    }
+  };
 
   return (
-    <div className="w-full max-w-xs">
-      {latestPost ? (
-        <p className="truncate">Your most recent post: {latestPost.name}</p>
-      ) : (
-        <p>You have no posts yet.</p>
-      )}
-
-      <CreatePost />
-    </div>
+    <Page>
+      <section className="bg-white dark:bg-gray-900">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+          <div className="mx-auto max-w-screen-md sm:text-center">
+            <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">Sign
+              up for our newsletter</h2>
+            <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">Stay
+              up to date with the roadmap progress, announcements and exclusive discounts feel free to sign up with your
+              email.</p>
+            <form onSubmit={handleSubmit}>
+              <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
+                <div className="relative w-full">
+                  <label htmlFor="email" className="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email
+                    address</label>
+                  <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                  </div>
+                  <input
+                    className="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Enter your email" type="email" id="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                  <div>
+                  <button type="submit"
+                          className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-blue-700 border-blue-600 sm:rounded-none sm:rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Subscribe
+                  </button>
+                  </div>
+              </div>
+              <div
+                className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">We
+                care about the protection of your data. <a href="#"
+                                                           className="font-medium text-primary-600 dark:text-primary-500 hover:underline">Read
+                  our Privacy Policy</a>.
+              </div>
+              {error && <p className="mt-4 text-red-500">{error}</p>}
+            </form>
+          </div>
+        </div>
+      </section>
+    </Page>
   );
 }

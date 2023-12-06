@@ -1,4 +1,4 @@
-import { postRouter } from "lotti/server/api/routers/post";
+import { newsRouter } from "lotti/server/api/routers/news";
 import { createTRPCRouter } from "lotti/server/api/trpc";
 
 /**
@@ -7,7 +7,7 @@ import { createTRPCRouter } from "lotti/server/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  news: newsRouter,
 });
 
 // export type definition of API
