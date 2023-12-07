@@ -1,8 +1,8 @@
 "use client";
 
-import {type PropsWithChildren} from "react";
-import {ErrorBoundary} from "./ErrorBoundary";
-import {cn} from "lotti/util";
+import { cn } from "lotti/util";
+import { type PropsWithChildren } from "react";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 type Props = {
   disablePadding?: boolean;
@@ -10,10 +10,10 @@ type Props = {
 };
 
 export const Page = ({
-                       children,
-                       disablePadding = false,
-                       header,
-                     }: PropsWithChildren<Props>) => {
+  children,
+  disablePadding = false,
+  header,
+}: PropsWithChildren<Props>) => {
   return (
     <main className="min-h-screen">
       <ErrorBoundary>
@@ -22,7 +22,9 @@ export const Page = ({
             "p-24 sm:p-16": !disablePadding,
           })}
         >
-          {header && <div className="text-2xl font-semibold mb-12 ">{header}</div>}
+          {header && (
+            <div className="mb-12 text-2xl font-semibold ">{header}</div>
+          )}
           {children}
         </div>
       </ErrorBoundary>

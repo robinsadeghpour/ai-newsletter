@@ -1,6 +1,6 @@
-import { type ReactNode, Component, type ErrorInfo } from "react";
 import { Page } from "lotti/components/Page";
 import { logger } from "lotti/util/logger";
+import { Component, type ErrorInfo, type ReactNode } from "react";
 
 interface Props {
   children?: ReactNode;

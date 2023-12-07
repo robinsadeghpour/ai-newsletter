@@ -1,6 +1,6 @@
+import { env } from "lotti/env";
+import { logger } from "lotti/util/logger";
 import OpenAI from "openai";
-import {env} from "lotti/env";
-import {logger} from "lotti/util/logger";
 
 const openai = new OpenAI({
   apiKey: env.OPENAI_API_KEY,
@@ -15,19 +15,20 @@ export type PromptTemplate<T> = {
 };
 
 export class Prompt<T> {
-  constructor(public template: PromptTemplate<T>, public params?: T) {}
+  constructor(
+    public template: PromptTemplate<T>,
+    public params?: T,
+  ) {}
   render() {
     return this.template.render(this.params);
   }
 }
 
-export const createChatCompletion = async <T>(
-  prompt: Prompt<T>,
-) => {
+export const createChatCompletion = async <T>(prompt: Prompt<T>) => {
   const response = await openai.chat.completions.create({
     ...defaultOptions,
     messages: [{ role: "user" as const, content: prompt.render() }],
-    response_format: { type: 'json_object' },
+    response_format: { type: "json_object" },
   });
   const result = response.choices[0];
 

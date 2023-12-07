@@ -1,4 +1,4 @@
-import {PromptTemplate} from "lotti/server/openai";
+import { type PromptTemplate } from "lotti/server/openai";
 
 export interface MagicNews {
   title: string;
@@ -24,5 +24,4 @@ export const magicNewsTemplate = {
 
     Format: {"title": "Title", "content": "Your content here, aim for around 300 words"}
     `,
-
 } satisfies PromptTemplate<MagicNews>;

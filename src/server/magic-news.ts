@@ -1,8 +1,11 @@
-import {createChatCompletion, Prompt,} from "lotti/server/openai";
-import {MagicNews, magicNewsTemplate} from "lotti/server/magic-mail.prompt";
-import {ExecutedQuery} from "@planetscale/database";
-import {db} from "lotti/server/db";
-import {news} from "lotti/server/db/schema";
+import { type ExecutedQuery } from "@planetscale/database";
+import { db } from "lotti/server/db";
+import { news } from "lotti/server/db/schema";
+import {
+  magicNewsTemplate,
+  type MagicNews,
+} from "lotti/server/magic-mail.prompt";
+import { createChatCompletion, Prompt } from "lotti/server/openai";
 
 type NewNews = typeof news.$inferInsert;
 
@@ -15,18 +18,17 @@ export async function generateMagicNews() {
   return mapResponseToMagicMail(result);
 }
 
-export const mapResponseToMagicMail = (
-  responseString: string,
-): MagicNews => {
+export const mapResponseToMagicMail = (responseString: string): MagicNews => {
   return JSON.parse(responseString) as MagicNews;
 };
 
-
-export const saveMagicNews = async (magicNews: MagicNews): Promise<ExecutedQuery> => {
+export const saveMagicNews = async (
+  magicNews: MagicNews,
+): Promise<ExecutedQuery> => {
   const newsToAdd: NewNews = {
     title: magicNews.title,
-    content: magicNews.content
-  }
+    content: magicNews.content,
+  };
 
   return db.insert(news).values(newsToAdd);
-}
+};

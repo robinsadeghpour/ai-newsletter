@@ -1,14 +1,13 @@
 "use client";
 
-import React from 'react';
+import LoadingCircleIndicator from "lotti/components/LoadingCircleIndicator";
 import { Page } from "lotti/components/Page";
 import { api } from "lotti/trpc/react";
-import LoadingCircleIndicator from "lotti/components/LoadingCircleIndicator";
 import Link from "next/link";
 
 export default function FullNews({ params }: { params: { id: string } }) {
   const { data, isLoading } = api.news.getNewsById.useQuery({
-    id: +params.id
+    id: +params.id,
   });
 
   return (
@@ -18,15 +17,20 @@ export default function FullNews({ params }: { params: { id: string } }) {
           <LoadingCircleIndicator />
         </div>
       )}
-      {!isLoading && data &&
-          <article className="mx-auto p-4 max-w-3xl">
-              <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline mt-8" href={"/news"}>
-                  ← Go back
-              </Link>
-              <h1 className="text-2xl font-semibold mt-2 mb-8">{data.title}</h1>
-              <p className="text-gray-700 text-lg whitespace-pre-line">{data.content}</p>
-          </article>
-      }
+      {!isLoading && data && (
+        <article className="mx-auto max-w-3xl p-4">
+          <Link
+            className="mt-8 font-medium text-blue-600 hover:underline dark:text-blue-500"
+            href={"/news"}
+          >
+            ← Go back
+          </Link>
+          <h1 className="mb-8 mt-2 text-2xl font-semibold">{data.title}</h1>
+          <p className="whitespace-pre-line text-lg text-gray-700">
+            {data.content}
+          </p>
+        </article>
+      )}
     </Page>
   );
-};
+}
