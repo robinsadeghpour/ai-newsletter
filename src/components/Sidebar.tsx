@@ -13,10 +13,10 @@ import Link from "next/link";
 const Sidebar = () => {
   const menuItems: SidebarMenuItemProps[] = [
     {title: "Home", icon: <HomeIcon/>, link: "/"},
-    {title: "Explore", icon: <QuestionMarkCircleIcon/>},
-    {title: "Chats", icon: <ChatBubbleLeftEllipsisIcon/>},
+    {title: "explore", icon: <QuestionMarkCircleIcon/>, link: "/explore"},
+    {title: "Chats", icon: <ChatBubbleLeftEllipsisIcon/>, link: "/chats"},
     {title: "News", icon: <NewspaperIcon/>, link: "/news"},
-    {title: "Profile", icon: <UserIcon/>},
+    {title: "Profile", icon: <UserIcon/>, link: "/profile  "},
   ]
 
   return (
