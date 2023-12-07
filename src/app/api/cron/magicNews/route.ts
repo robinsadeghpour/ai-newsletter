@@ -3,7 +3,7 @@ import { generateMagicNews, saveMagicNews } from "lotti/server/magic-news";
 import { logger } from "lotti/util/logger";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function GET() {
   logger.info("running cron job...");
   try {
     const generatedNews = await generateMagicNews();
@@ -13,6 +13,9 @@ export async function POST() {
     return NextResponse.json({}, { status: 200 });
   } catch (error) {
     logger.error("Magic Mail cron failed", error);
-    return NextResponse.json({ error });
+    const response = NextResponse.json({ error } );
+    response.headers.set('Cache-Control', 'no-cache');
+
+    return response;
   }
 }
