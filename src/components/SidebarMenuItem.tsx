@@ -15,7 +15,12 @@ export interface SidebarMenuItemProps {
 const SidebarMenuItem = ({title, icon, link = "#"}: SidebarMenuItemProps) => {
   const pathname = usePathname();
 
-  const isActive = useMemo(() => pathname.includes(link), [pathname, link]);
+  const isActive = useMemo(() => {
+    if (link !== '/' && pathname === link) {
+      return true;
+    }
+    return link === '/' && pathname === '/';
+  }, [pathname, link]);
 
   return (
     <Link href={link}

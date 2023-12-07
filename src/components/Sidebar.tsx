@@ -1,17 +1,18 @@
 import React from 'react';
 import {
   ArrowLeftOnRectangleIcon,
-  ChatBubbleLeftEllipsisIcon,
+  ChatBubbleLeftEllipsisIcon, HomeIcon,
   NewspaperIcon,
   QuestionMarkCircleIcon,
   UserIcon
 } from '@heroicons/react/24/outline';
-import SidebarMenuItem, {SidebarMenuItemProps} from "lotti/components/SidebarMenuItem";
+import SidebarMenuItem, {type SidebarMenuItemProps} from "lotti/components/SidebarMenuItem";
 import Image from "next/image";
 import Link from "next/link";
 
 const Sidebar = () => {
   const menuItems: SidebarMenuItemProps[] = [
+    {title: "Home", icon: <HomeIcon/>, link: "/"},
     {title: "Explore", icon: <QuestionMarkCircleIcon/>},
     {title: "Chats", icon: <ChatBubbleLeftEllipsisIcon/>},
     {title: "News", icon: <NewspaperIcon/>, link: "/news"},
