@@ -4,6 +4,7 @@ import {generateMagicNews, saveMagicNews} from "lotti/server/magic-news";
 import {sendMagicMail} from "lotti/server/email-notification";
 
 export async function GET() {
+  logger.log("running cron job...")
   try {
     const generatedNews = await generateMagicNews();
     void saveMagicNews(generatedNews);
