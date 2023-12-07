@@ -15,7 +15,7 @@ export const newsSubscriptionList = mysqlTable(
   "newsSubscriptionList",
   {
     id: bigint("id", {mode: "number"}).primaryKey().autoincrement(),
-    email: varchar("email", {length: 255}).notNull(),
+    email: varchar("email", {length: 255}).unique().notNull(),
   },
 );
 

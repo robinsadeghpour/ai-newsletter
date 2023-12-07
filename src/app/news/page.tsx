@@ -9,8 +9,6 @@ import LoadingCircleIndicator from "lotti/components/LoadingCircleIndicator";
 const News = () => {
   const {data, isLoading} = api.news.getNews.useQuery()
 
-  console.log(data)
-
   return (
     <Page header={"News"}>
       {isLoading && (

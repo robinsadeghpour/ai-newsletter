@@ -36,6 +36,7 @@
     ]
   },
   "include": [
+    "prettier.config.js",
     ".eslintrc.cjs",
     "next-env.d.ts",
     "post-build.js",
