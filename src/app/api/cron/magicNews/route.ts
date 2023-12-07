@@ -3,6 +3,8 @@ import { generateMagicNews, saveMagicNews } from "lotti/server/magic-news";
 import { logger } from "lotti/util/logger";
 import { NextResponse } from "next/server";
 
+export const revalidate = 0
+
 export async function GET() {
   logger.info("running cron job...");
   try {
