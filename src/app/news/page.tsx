@@ -17,12 +17,12 @@ const News = () => {
         </div>
       )}
       {!isLoading &&
-          <div className="flex flex-wrap -m-2 gap-x-4 gap-y-12">
+          <div className="flex flex-wrap gap-x-6 gap-y-12">
             {data?.map((news) => <NewsCard
                 id={news.id}
                 title={news.title}
                 content={news.content}
-                className={"flex-1"}
+                className={"w-1/3"}
               />
             )}
           </div>
