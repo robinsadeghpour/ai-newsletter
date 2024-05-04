@@ -1,8 +1,8 @@
 "use client";
 
-import LoadingCircleIndicator from "lotti/components/LoadingCircleIndicator";
-import { Page } from "lotti/components/Page";
-import { api } from "lotti/trpc/react";
+import LoadingCircleIndicator from "@/components/LoadingCircleIndicator";
+import { Page } from "@/components/Page";
+import { api } from "@/trpc/react";
 import Link from "next/link";
 
 export default function FullNews({ params }: { params: { id: string } }) {

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { useMemo } from "react";
 
-import { cn } from "lotti/util";
+import { cn } from "@/util";
 import { usePathname } from "next/navigation";
 
 export interface SidebarMenuItemProps {

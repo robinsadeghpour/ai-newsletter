@@ -1,5 +1,5 @@
-import { newsRouter } from "lotti/server/api/routers/news";
-import { createTRPCRouter } from "lotti/server/api/trpc";
+import { newsRouter } from "@/server/api/routers/news";
+import { createTRPCRouter } from "@/server/api/trpc";
 
 /**
  * This is the primary router for your server.

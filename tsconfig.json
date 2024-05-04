@@ -22,10 +22,10 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "lotti/public": [
+      "@/public": [
         "./public"
       ],
-      "lotti/*": [
+      "@/*": [
         "./src/*"
       ]
     },

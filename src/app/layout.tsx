@@ -1,6 +1,6 @@
-import Sidebar from "lotti/components/Sidebar";
-import "lotti/styles/globals.css";
-import { TRPCReactProvider } from "lotti/trpc/react";
+import Sidebar from "@/components/Sidebar";
+import "@/styles/globals.css";
+import { TRPCReactProvider } from "@/trpc/react";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import React from "react";
@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "LottiAi",
-  description: "LottiAi Magic News",
+  title: "Newsletter.ai",
+  description: "An AI-powered newsletter",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

@@ -1,5 +1,5 @@
 {
-  "name": "lotti-ai-content-magic",
+  "name": "ai-newsletter",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -57,5 +57,5 @@
   "ct3aMetadata": {
     "initVersion": "7.24.0"
   },
-  "packageManager": "npm@9.1.1"
+  "packageManager": "yarn@1.22.21"
 }

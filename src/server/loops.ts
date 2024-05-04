@@ -1,5 +1,5 @@
 import LoopsClient from "loops";
-import { env } from "lotti/env";
+import { env } from "@/env";
 
 export const loopsClient = new LoopsClient(env.LOOPS_API_KEY);
 

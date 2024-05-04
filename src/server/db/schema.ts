@@ -15,7 +15,7 @@ import {
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
 export const mysqlTable = mysqlTableCreator(
-  (name) => `lotti-ai-content-magic_${name}`,
+  (name) => `ai-newsletter_${name}`,
 );
 
 export const newsSubscriptionList = mysqlTable("newsSubscriptionList", {

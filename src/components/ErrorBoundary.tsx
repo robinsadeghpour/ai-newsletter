@@ -1,5 +1,5 @@
-import { Page } from "lotti/components/Page";
-import { logger } from "lotti/util/logger";
+import { Page } from "@/components/Page";
+import { logger } from "@/util/logger";
 import { Component, type ErrorInfo, type ReactNode } from "react";
 
 interface Props {

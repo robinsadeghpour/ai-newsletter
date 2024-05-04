@@ -1,8 +1,8 @@
-import { db } from "lotti/server/db";
-import { sendTransactional, TransactionalMailsEnum } from "lotti/server/loops";
-import { type MagicNews } from "lotti/server/magic-mail.prompt";
+import { db } from "@/server/db";
+import { sendTransactional, TransactionalMailsEnum } from "@/server/loops";
+import { type aiNewsletter } from "@/server/magic-mail.prompt";
 
-export const sendMagicMail = async (news: MagicNews) => {
+export const sendMagicMail = async (news: aiNewsletter) => {
   const contacts = await db.query.newsSubscriptionList.findMany();
 
   await Promise.all(

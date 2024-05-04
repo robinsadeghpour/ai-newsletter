@@ -1,7 +1,7 @@
 "use client";
 
-import { Page } from "lotti/components/Page";
-import { api } from "lotti/trpc/react";
+import { Page } from "@/components/Page";
+import { api } from "@/trpc/react";
 import { useState } from "react";
 import { z } from "zod";
 

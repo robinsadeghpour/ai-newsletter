@@ -1,6 +1,6 @@
-import { sendMagicMail } from "lotti/server/email-notification";
-import { generateMagicNews, saveMagicNews } from "lotti/server/magic-news";
-import { logger } from "lotti/util/logger";
+import { sendMagicMail } from "@/server/email-notification";
+import { generateMagicNews, saveMagicNews } from "@/server/magic-news";
+import { logger } from "@/util/logger";
 import { NextResponse } from "next/server";
 
 export const revalidate = 0

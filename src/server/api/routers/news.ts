@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import { createTRPCRouter, publicProcedure } from "lotti/server/api/trpc";
-import { news, newsSubscriptionList } from "lotti/server/db/schema";
+import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { news, newsSubscriptionList } from "@/server/db/schema";
 import { z } from "zod";
 
 type NewSubscription = typeof newsSubscriptionList.$inferInsert;

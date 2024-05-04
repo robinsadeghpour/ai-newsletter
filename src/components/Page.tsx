@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "lotti/util";
+import { cn } from "@/util";
 import { type PropsWithChildren } from "react";
 import { ErrorBoundary } from "./ErrorBoundary";
 

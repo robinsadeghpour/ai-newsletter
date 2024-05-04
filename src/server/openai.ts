@@ -1,5 +1,5 @@
-import { env } from "lotti/env";
-import { logger } from "lotti/util/logger";
+import { env } from "@/env";
+import { logger } from "@/util/logger";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
